@@ -70,5 +70,3 @@ for command in commands:
 output = ret[:-1].split('\n')
 for w in output:
     print(w)
-
-
