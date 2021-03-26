@@ -6,7 +6,7 @@ N, M = map(int, inputs[0].split())
 matrix = [list(map(int, nums.split())) for nums in inputs[1:1+N]]
 commands = inputs[1+N:1+N+M]
 
-TwoDimFenWickTree = [[0 for _ in range(N)] for _ in range(N)]
+TwoDimFenWickTree = [[0]*N for _ in range(N)]
 
 def UpdateFenWickTree(x, y, v): #  0 < x < N
     row = x
@@ -47,12 +47,10 @@ for row in range(N):
         UpdateFenWickTree(row+1, column+1, matrix[row][column])
 
 for command in commands:
-
     if command[0] == '0':
         _, x, y, v = map(int, command.split())
         UpdateFenWickTree(x, y, v - matrix[x-1][y-1])
         matrix[x-1][y-1] = v
-
     elif command[0] == '1':
         _, sx, sy, dx, dy = map(int, command.split())
         areaSum = GetAreaSum(dx, dy) - GetAreaSum(dx, sy-1) - GetAreaSum(sx-1, dy) + GetAreaSum(sx-1, sy-1)
